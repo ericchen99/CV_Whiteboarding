@@ -1,8 +1,3 @@
-"""
-Code borrowed from:
-https://learnopencv.com/creating-a-virtual-pen-and-eraser-with-opencv/
-"""
-
 import cv2
 import numpy as np
 import time

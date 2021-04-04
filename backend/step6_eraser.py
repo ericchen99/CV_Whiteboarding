@@ -9,8 +9,8 @@ if load_from_disk:
 cap = cv2.VideoCapture(0)
 
 # Load these 2 images and resize them to the same size.
-pen_img = cv2.resize(cv2.imread('pen.png',1), (50, 50))
-eraser_img = cv2.resize(cv2.imread('eraser.jpg',1), (50, 50))
+pen_img = cv2.resize(cv2.imread('pen.jpeg',1), (50, 50))
+eraser_img = cv2.resize(cv2.imread('eraser.png',1), (50, 50))
 
 kernel = np.ones((5,5),np.uint8)
 
