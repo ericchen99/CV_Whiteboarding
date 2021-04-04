@@ -1,6 +1,7 @@
 from cv_whiteboarding.main_app import app, socketio
 from flask.cli import with_appcontext
 from flask_cors import CORS
+import cv_whiteboarding.backend
 
 CORS(app, supports_credentials=True)
 #not sure
