@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import time
+import keyboard
 
 load_from_disk = True
 if load_from_disk:
@@ -9,8 +10,10 @@ if load_from_disk:
 cap = cv2.VideoCapture(0)
 
 # Load these 2 images and resize them to the same size.
-pen_img = cv2.resize(cv2.imread('pen.jpeg',1), (50, 50))
-eraser_img = cv2.resize(cv2.imread('eraser.png',1), (50, 50))
+pen_img = cv2.resize(cv2.imread('pen.png',1), (50, 50))
+eraser_img = cv2.resize(cv2.imread('eraser.jpeg',1), (50, 50))
+no_pen_img = cv2.resize(cv2.imread('nopen.png', 1), (50, 50))
+ERASER_RADIUS = 80
 
 kernel = np.ones((5,5),np.uint8)
 
@@ -64,15 +67,15 @@ while(1):
     # If the disruption is greater than background threshold and there has 
     # been some time after the previous switch then you. can change the 
     # object type.
-    if switch_thresh>background_threshold and (time.time()-last_switch) > 1:
 
-        # Save the time of the switch. 
-        last_switch = time.time()
-        
-        if switch == 'Pen':
-            switch = 'Eraser'
-        else:
-            switch = 'Pen'
+    if keyboard.is_pressed('p'):
+        switch = 'Pen'
+
+    if keyboard.is_pressed('n'):
+        switch = 'NoPen'
+
+    if keyboard.is_pressed('e'):
+        switch = 'Eraser'
 
     # Convert BGR to HSV
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -119,9 +122,12 @@ while(1):
                 # Draw the line on the canvas
                 canvas = cv2.line(canvas, (x1,y1),
                 (x2,y2), [255,0,0], 5)
+
+            elif switch == 'NoPen':
+                pass
                 
             else:
-                cv2.circle(canvas, (x2, y2), 20,
+                cv2.circle(canvas, (x2, y2), ERASER_RADIUS,
                 (0,0,0), -1)
             
             
@@ -150,10 +156,13 @@ while(1):
     frame = cv2.add(foreground,background)
 
     # Switch the images depending upon what we're using, pen or eraser.
-    if switch != 'Pen':
-        cv2.circle(frame, (x1, y1), 20, (255,255,255), -1)
+    if switch == 'Eraser':
+        cv2.circle(frame, (x1, y1), ERASER_RADIUS, (255,255,255), -1)
         frame[0: 50, 0: 50] = eraser_img
+    elif switch == 'NoPen':
+        frame[0:50, 0:50] = no_pen_img
     else:
+        cv2.circle(frame, (x1, y1), 10, (255,255,255), -1)
         frame[0: 50, 0: 50] = pen_img
 
     cv2.imshow('image',frame)
