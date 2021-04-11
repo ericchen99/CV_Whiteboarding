@@ -1,6 +1,7 @@
 """REST API index."""
 import flask
 import cv_whiteboarding
+from flask import Flask, request, render_template
 
 class InvalidUsage(Exception):
     """Invalid Usage Class."""
@@ -39,7 +40,5 @@ def testapi():
 
 @cv_whiteboarding.app.route('/', methods=["GET"])
 def home():
-    context = {
-        "Home": "This is the convo_starter_backend home page. 2",
-    }
-    return flask.jsonify(**context)
+    context = {}
+    return render_template("index.html")
