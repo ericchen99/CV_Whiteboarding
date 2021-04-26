@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Whiteboard</title>
@@ -18,6 +18,99 @@
   <script src="./whiteboard.js"></script>
   <script async src="../static/js/opencv.js" onload="console.log(`Hello from index.html onload()`);" type="text/javascript"></script>
   <br/>
-  <input id="Button" onclick="start();" type="button" value="Start" />
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>virtual drawing board</title>
+
+
+<script async src="../static/js/opencv.js" onload="console.log(`Hello from index.html onload()`);" type="text/javascript"></script>
+
+</head>
+
+
+
+
+
+<style>
+#rectangle {
+          height: 100%;
+          width: 160px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 20px;
+          background: #2E2E30;
+           }
+body {
+	margin: 0;	
+}
+
+#board {
+	margin: 0 auto;
+	width: 500px;	
+}
+
+#canvasDraw {
+	border: 3px dotted white;	
+}
+
+
+#pencil{
+            position: absolute;
+            width: 70px;
+            height: 69px;
+            left: 32px;
+            top: 56px;
+            background-color: #39ff14;
+            z-index:2;
+
+
+    }
+
+#eraser{
+            position: absolute;
+            width: 70px;
+            height: 69px;
+            left: 32px;
+            top: 176px;
+            z-index:2;
+            background-color: #39ff14;
+
+
+    }
+</style>
+
+<!-- <body style="background-color:black;" text="#ffffff"> -->
+
+<button onclick="start();" id="pencil" src><img src="pencil.svg"></button>
+<button onclick="" id="eraser"><img src="eraser.svg"></button>
+
+</div><div id="rectangle"></div>
+<div id="board">
+
+<canvas id="canvasFrame"></canvas>
+<canvas id="canvasOutput"></canvas>
+<canvas id="canvasDraw">
+	Sorry, your browser doesn't support canvas technology.
+</canvas>
+<video id="videoInput"></video>
+<script src="./whiteboard.js"></script>
+
+</div>
+
+
+
 </body>
 </html>
+
+
+
+</body>
+</html>  <video id="videoInput"></video>

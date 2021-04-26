@@ -64,6 +64,7 @@ function onOpenCvReady() {
         // console.log("before calling cvtColor")
         cv.cvtColor(src, mask, cv.COLOR_RGBA2BGR);
         cv.cvtColor(mask, mask, cv.COLOR_BGR2HSV);
+
         // console.log(`after calling cvtColor`)
 
         var ctx = document.getElementById("canvasDraw").getContext("2d");
